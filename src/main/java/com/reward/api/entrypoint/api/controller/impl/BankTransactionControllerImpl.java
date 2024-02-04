@@ -1,8 +1,8 @@
 package com.reward.api.entrypoint.api.controller.impl;
 
-import com.reward.api.core.usecase.transaction.CreateBankTransactionCommand;
-import com.reward.api.core.usecase.transaction.CreateBankTransactionOutput;
-import com.reward.api.core.usecase.transaction.CreateBankTransactionUseCase;
+import com.reward.api.core.usecase.transaction.create.CreateBankTransactionCommand;
+import com.reward.api.core.usecase.transaction.common.BankTransactionOutput;
+import com.reward.api.core.usecase.transaction.create.CreateBankTransactionUseCase;
 import com.reward.api.entrypoint.api.controller.BankTransactionController;
 import com.reward.api.entrypoint.api.model.BankTransactionModel;
 import com.reward.api.entrypoint.api.model.input.BankTransactionInput;
@@ -37,7 +37,7 @@ public class BankTransactionControllerImpl implements BankTransactionController 
         return HttpResponse.created(mapToBankTransaction(bankTransaction));
     }
 
-    private static BankTransactionModel mapToBankTransaction(CreateBankTransactionOutput bankTransaction) {
+    private static BankTransactionModel mapToBankTransaction(BankTransactionOutput bankTransaction) {
         return new BankTransactionModel(bankTransaction.id(), bankTransaction.amount(), bankTransaction.date());
     }
 }

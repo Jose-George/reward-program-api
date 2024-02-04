@@ -7,10 +7,8 @@ import java.util.UUID;
 public final class LevelScore {
 
     private final UUID id;
-
     private final UUID customerId;
     private final String description;
-
     private final OffsetDateTime createdAt;
 
     private LevelScore(UUID id, UUID customerId, String description, OffsetDateTime createdAt) {

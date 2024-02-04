@@ -6,6 +6,10 @@ import com.reward.api.dataprovider.entity.BankTransactionEntity;
 import com.reward.api.dataprovider.repository.BankTransactionRepository;
 import jakarta.inject.Inject;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 public class BankTransactionImpl implements BankTransactionGateway {
 
     private final BankTransactionRepository repository;
@@ -20,6 +24,13 @@ public class BankTransactionImpl implements BankTransactionGateway {
         repository.save(builderTransactionEntity(bankTransaction));
         return bankTransaction;
     }
+
+    @Override
+    public Optional<List<BankTransaction>> findByTransactionLast30Days(UUID customerId) {
+        //implementar
+        return Optional.empty();
+    }
+
 
     private BankTransactionEntity builderTransactionEntity(final BankTransaction bankTransaction) {
         return BankTransactionEntity.builder()

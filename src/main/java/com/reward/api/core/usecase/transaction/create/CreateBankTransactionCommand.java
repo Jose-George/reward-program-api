@@ -1,4 +1,4 @@
-package com.reward.api.core.usecase.transaction;
+package com.reward.api.core.usecase.transaction.create;
 
 import com.reward.api.core.domain.transaction.TypeTransaction;
 
