@@ -1,8 +1,8 @@
 package com.reward.api.core.usecase.customer.edit;
 
-import com.reward.api.core.domain.Cpf;
-import com.reward.api.core.domain.Customer;
-import com.reward.api.core.domain.Email;
+import com.reward.api.core.domain.customer.Cpf;
+import com.reward.api.core.domain.customer.Customer;
+import com.reward.api.core.domain.customer.Email;
 import com.reward.api.core.gateway.CustomerGateway;
 import com.reward.api.core.usecase.customer.common.CustomerOutputData;
 import jakarta.inject.Inject;

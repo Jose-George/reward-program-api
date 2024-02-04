@@ -1,6 +1,6 @@
 package com.reward.api.entrypoint.api.controller.impl;
 
-import com.reward.api.core.domain.Customer;
+import com.reward.api.core.exception.NotFoundException;
 import com.reward.api.core.usecase.customer.common.CustomerOutputData;
 import com.reward.api.core.usecase.customer.create.CreateCustomerCommand;
 import com.reward.api.core.usecase.customer.create.CreateCustomerUseCase;
@@ -11,20 +11,24 @@ import com.reward.api.core.usecase.customer.edit.EditCustomerUseCase;
 import com.reward.api.core.usecase.customer.retrieve.FindCustomerCommand;
 import com.reward.api.core.usecase.customer.retrieve.FindCustomerUseCase;
 import com.reward.api.entrypoint.api.controller.CustomerController;
-import com.reward.api.entrypoint.api.controller.model.CustomerModel;
-import com.reward.api.entrypoint.api.controller.model.input.CustomerInput;
+import com.reward.api.entrypoint.api.model.CustomerModel;
+import com.reward.api.entrypoint.api.model.input.CustomerInput;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.annotation.*;
 import io.micronaut.validation.Validated;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
 
 @Controller("/customer")
 @Validated
 public class CustomerControllerImpl implements CustomerController {
+
+    private static Logger logger = LoggerFactory.getLogger(CustomerControllerImpl.class);
 
     private final CreateCustomerUseCase createCustomerUseCase;
 
@@ -64,8 +68,13 @@ public class CustomerControllerImpl implements CustomerController {
     @Get("/find/{cpf}")
     @Override
     public HttpResponse<CustomerModel> findByCpf(@PathVariable String cpf) {
-        var customer = findCustomerUseCase.execute(FindCustomerCommand.with(cpf));
-        return HttpResponse.ok(mapToCustomerModel(customer));
+        try {
+            logger.info("findByCpf with CPF = " + cpf);
+            var customer = findCustomerUseCase.execute(FindCustomerCommand.with(cpf));
+            return HttpResponse.ok(mapToCustomerModel(customer));
+        } catch (RuntimeException runtimeException) {
+            throw new NotFoundException(runtimeException.getMessage());
+        }
     }
 
     @Delete("/delete/{cpf}")

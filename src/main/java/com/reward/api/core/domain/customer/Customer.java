@@ -1,4 +1,4 @@
-package com.reward.api.core.domain;
+package com.reward.api.core.domain.customer;
 
 import java.util.Objects;
 import java.util.UUID;

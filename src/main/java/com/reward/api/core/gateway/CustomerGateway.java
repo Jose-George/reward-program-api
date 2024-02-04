@@ -1,7 +1,7 @@
 package com.reward.api.core.gateway;
 
-import com.reward.api.core.domain.Cpf;
-import com.reward.api.core.domain.Customer;
+import com.reward.api.core.domain.customer.Cpf;
+import com.reward.api.core.domain.customer.Customer;
 
 import java.util.Optional;
 

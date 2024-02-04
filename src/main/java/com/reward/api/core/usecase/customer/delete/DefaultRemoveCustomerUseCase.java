@@ -1,6 +1,6 @@
 package com.reward.api.core.usecase.customer.delete;
 
-import com.reward.api.core.domain.Cpf;
+import com.reward.api.core.domain.customer.Cpf;
 import com.reward.api.core.gateway.CustomerGateway;
 import jakarta.inject.Inject;
 

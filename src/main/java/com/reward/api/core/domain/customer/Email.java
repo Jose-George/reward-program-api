@@ -1,4 +1,4 @@
-package com.reward.api.core.domain;
+package com.reward.api.core.domain.customer;
 
 import com.reward.api.core.exception.EmailException;
 
@@ -20,7 +20,6 @@ public final class Email implements Supplier<String> {
     public String get() {
         return value;
     }
-
 
     @Override
     public boolean equals(Object o) {

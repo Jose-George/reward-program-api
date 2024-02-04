@@ -1,4 +1,4 @@
-package com.reward.api.core.domain;
+package com.reward.api.core.domain.customer;
 
 import com.reward.api.core.exception.CpfException;
 

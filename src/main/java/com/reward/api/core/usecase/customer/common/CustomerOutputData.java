@@ -1,8 +1,6 @@
 package com.reward.api.core.usecase.customer.common;
 
-import com.reward.api.core.domain.Cpf;
-import com.reward.api.core.domain.Customer;
-import com.reward.api.core.domain.Email;
+import com.reward.api.core.domain.customer.Customer;
 
 import java.util.UUID;
 
