@@ -9,6 +9,8 @@ import java.util.UUID;
 public interface BankTransactionGateway {
     BankTransaction create(BankTransaction bankTransaction);
 
-    Optional<List<BankTransaction>> findByTransactionLast30Days(UUID customerId);
+    List<BankTransaction> findByTransactionLast30Days(UUID customerId);
+
+    Optional<BankTransaction> findByTransactionId(UUID transactionId);
 
 }

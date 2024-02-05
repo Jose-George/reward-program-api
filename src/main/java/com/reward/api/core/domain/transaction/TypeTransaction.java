@@ -4,8 +4,8 @@ public enum TypeTransaction {
 
     //status
     TIPO_1(1,"TIPO_1"),
-    TIPO_2(2, "TIPO_2");
-
+    TIPO_2(2, "TIPO_2"),
+    IOF_JUROS_TAXAS(3, "IOF_JUROS_TAXAS");
     private int cod;
     private String description;
 

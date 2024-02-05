@@ -14,17 +14,15 @@ import java.util.UUID;
 @Builder
 @Data
 @Entity
-@Table(name = "BANK_TRANSACTION")
+@Table(name = "LEVEL_SCORE")
 @NoArgsConstructor
 @AllArgsConstructor
-public class BankTransactionEntity {
+public class LevelScoreEntity {
 
     @Id
     private UUID id;
-    private String type;
     private UUID customerId;
-    private Double amount;
-    private OffsetDateTime transactionDate;
-    private String storeBuy;
+    private String description;
+    private OffsetDateTime createdAt;
 
 }

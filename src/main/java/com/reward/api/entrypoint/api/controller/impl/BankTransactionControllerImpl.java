@@ -30,7 +30,7 @@ public class BankTransactionControllerImpl implements BankTransactionController 
     @Override
     public HttpResponse<BankTransactionModel> create(@Body @Valid BankTransactionInput bankTransactionInput) {
         var bankTransaction = createBankTransactionUseCase.execute(CreateBankTransactionCommand.with(
-                bankTransactionInput.type(), bankTransactionInput.customerId(), Money.of(bankTransactionInput.amount(), "USD"),
+                bankTransactionInput.type(), bankTransactionInput.cpf(), Money.of(bankTransactionInput.amount(), "USD"),
                 bankTransactionInput.storeBuy()
         ));
 
@@ -38,6 +38,6 @@ public class BankTransactionControllerImpl implements BankTransactionController 
     }
 
     private static BankTransactionModel mapToBankTransaction(BankTransactionOutput bankTransaction) {
-        return new BankTransactionModel(bankTransaction.id(), bankTransaction.amount(), bankTransaction.date());
+        return new BankTransactionModel(bankTransaction.id(), bankTransaction.amount().toString(), bankTransaction.date());
     }
 }

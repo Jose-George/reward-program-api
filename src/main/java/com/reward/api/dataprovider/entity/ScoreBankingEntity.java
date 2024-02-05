@@ -1,5 +1,6 @@
 package com.reward.api.dataprovider.entity;
 
+import com.reward.api.core.domain.score.TypeOperation;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -14,17 +15,23 @@ import java.util.UUID;
 @Builder
 @Data
 @Entity
-@Table(name = "BANK_TRANSACTION")
+@Table(name = "SCORE_BANKING")
 @NoArgsConstructor
 @AllArgsConstructor
-public class BankTransactionEntity {
+public class ScoreBankingEntity {
 
     @Id
     private UUID id;
-    private String type;
+
+    private Integer score;
+
     private UUID customerId;
-    private Double amount;
-    private OffsetDateTime transactionDate;
-    private String storeBuy;
+
+    private OffsetDateTime createdAt;
+
+    private String origin;
+
+    private String typeOperation;
+
 
 }

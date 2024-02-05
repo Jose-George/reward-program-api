@@ -7,7 +7,5 @@ import java.util.UUID;
 
 @Introspected
 @Serdeable
-public record BankTransactionInput(String type, String cpf, double amount, String storeBuy) {
+public record ScoreBankingInput(String cpf, String origin, UUID transactionId, String level) {
 }
-
-

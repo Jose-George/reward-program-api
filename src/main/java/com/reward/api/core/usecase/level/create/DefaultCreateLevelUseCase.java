@@ -1,31 +1,53 @@
 package com.reward.api.core.usecase.level.create;
 
-import com.reward.api.core.domain.customer.Customer;
+import com.reward.api.core.domain.level.LevelScore;
 import com.reward.api.core.gateway.LevelScoreGateway;
 import com.reward.api.core.usecase.customer.common.CustomerOutputData;
 import com.reward.api.core.usecase.customer.retrieve.FindCustomerCommand;
 import com.reward.api.core.usecase.customer.retrieve.FindCustomerUseCase;
 import com.reward.api.core.usecase.level.common.CreateLevelCommand;
 import com.reward.api.core.usecase.level.common.LevelOutputData;
+import com.reward.api.core.usecase.transaction.common.BankTransactionOutput;
+import com.reward.api.core.usecase.transaction.retrieve.FindBankTransactionCommand;
+import com.reward.api.core.usecase.transaction.retrieve.FindBankTransactionUseCase;
+import io.micronaut.http.annotation.Post;
 import jakarta.inject.Inject;
 
-public class DefaultCreateLevelUseCase extends CreateLevelUseCase{
+import java.util.List;
 
-    private final LevelScoreGateway leavelScoreGateway;
+public class DefaultCreateLevelUseCase extends CreateLevelUseCase {
+
+    private final LevelScoreGateway levelScoreGateway;
     private final FindCustomerUseCase findCustomerUseCase;
+    private final FindBankTransactionUseCase findBankTransactionUseCase;
 
     @Inject
-    public DefaultCreateLevelUseCase(LevelScoreGateway leavelScoreGateway, FindCustomerUseCase findCustomerUseCase) {
-        this.leavelScoreGateway = leavelScoreGateway;
+    public DefaultCreateLevelUseCase(LevelScoreGateway levelScoreGateway, FindCustomerUseCase findCustomerUseCase, FindBankTransactionUseCase findBankTransactionUseCase) {
+        this.levelScoreGateway = levelScoreGateway;
         this.findCustomerUseCase = findCustomerUseCase;
+        this.findBankTransactionUseCase = findBankTransactionUseCase;
     }
 
+    @Post("/create")
     @Override
     public LevelOutputData execute(CreateLevelCommand createLevelCommand) {
         CustomerOutputData customer =
                 findCustomerUseCase.execute(FindCustomerCommand.with(createLevelCommand.cpf()));
-        //validar customerId
-        //recuperar o valor de transacoes dos ultimos 30 dias
-        return null;
+        List<BankTransactionOutput> transactions =
+                findBankTransactionUseCase.execute(FindBankTransactionCommand.with(customer.getId()));
+
+        return LevelOutputData.from(
+                levelScoreGateway.create(LevelScore.of(sumAmount(transactions), customer.getId()))
+        );
     }
+
+    private static Double sumAmount(List<BankTransactionOutput> transactions) {
+        if(transactions.isEmpty())
+            throw new IllegalArgumentException("The list cannot be null or empty.");
+
+        return transactions.stream().
+                mapToDouble(BankTransactionOutput::amount).sum();
+
+    }
+
 }

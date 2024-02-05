@@ -9,7 +9,7 @@ public interface LevelScoreGateway {
 
     LevelScore create(LevelScore levelScore);
     LevelScore edit(LevelScore levelScore);
-    Optional<LevelScore> findByCustomerId(UUID id);
+    Optional<LevelScore> findByLevelScoreId(UUID id);
     void delete(UUID id);
 
 }
