@@ -1,8 +1,8 @@
 package com.reward.api.entrypoint.api.controller.impl;
 
-import com.reward.api.core.usecase.score.CreateScoreBankingCommand;
-import com.reward.api.core.usecase.score.CreateScoreBankingOutput;
-import com.reward.api.core.usecase.score.CreateScoreUseCase;
+import com.reward.api.core.usecase.score.create.CreateScoreBankingCommand;
+import com.reward.api.core.usecase.score.create.CreateScoreBankingOutput;
+import com.reward.api.core.usecase.score.create.CreateScoreUseCase;
 import com.reward.api.entrypoint.api.controller.ScoreBankingController;
 import com.reward.api.entrypoint.api.model.ScoreBankingModel;
 import com.reward.api.entrypoint.api.model.input.ScoreBankingInput;

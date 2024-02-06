@@ -5,12 +5,11 @@ import com.reward.api.core.gateway.LevelScoreGateway;
 import com.reward.api.core.usecase.customer.common.CustomerOutputData;
 import com.reward.api.core.usecase.customer.retrieve.FindCustomerCommand;
 import com.reward.api.core.usecase.customer.retrieve.FindCustomerUseCase;
-import com.reward.api.core.usecase.level.common.CreateLevelCommand;
 import com.reward.api.core.usecase.level.common.LevelOutputData;
+import com.reward.api.core.usecase.score.common.CreateScoreLevelCommand;
 import com.reward.api.core.usecase.transaction.common.BankTransactionOutput;
 import com.reward.api.core.usecase.transaction.retrieve.FindBankTransactionCommand;
 import com.reward.api.core.usecase.transaction.retrieve.FindBankTransactionUseCase;
-import io.micronaut.http.annotation.Post;
 import jakarta.inject.Inject;
 
 import java.util.List;
@@ -28,9 +27,8 @@ public class DefaultCreateLevelUseCase extends CreateLevelUseCase {
         this.findBankTransactionUseCase = findBankTransactionUseCase;
     }
 
-    @Post("/create")
     @Override
-    public LevelOutputData execute(CreateLevelCommand createLevelCommand) {
+    public LevelOutputData execute(CreateScoreLevelCommand createLevelCommand) {
         CustomerOutputData customer =
                 findCustomerUseCase.execute(FindCustomerCommand.with(createLevelCommand.cpf()));
         List<BankTransactionOutput> transactions =

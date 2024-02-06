@@ -1,12 +1,15 @@
 package com.reward.api.entrypoint.api.controller;
 
 import com.reward.api.entrypoint.api.model.LevelModel;
+import com.reward.api.entrypoint.api.model.LevelScoreModel;
 import com.reward.api.entrypoint.api.model.input.LevelInput;
 import io.micronaut.http.HttpResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
+import java.util.UUID;
 
 @Tag(name = "LevelScore")
 public interface LevelScoreController {
@@ -22,5 +25,7 @@ public interface LevelScoreController {
             description = "Creates and adds a new level for the given customer."
     )
     HttpResponse<LevelModel> create(LevelInput levelInput);
+
+    HttpResponse<LevelScoreModel> findLevelCustomerId(String customerId);
 
 }

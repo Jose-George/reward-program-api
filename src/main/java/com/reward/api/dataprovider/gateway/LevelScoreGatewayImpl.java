@@ -30,8 +30,8 @@ public class LevelScoreGatewayImpl implements LevelScoreGateway {
     }
 
     @Override
-    public Optional<LevelScore> findByLevelScoreId(UUID id) {
-        return Optional.empty();
+    public Optional<String> findByLevelScoreCustomerId(UUID id) {
+        return Optional.of(repository.findByCustomerId(id).get().getDescription());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.reward.api.core.usecase.score;
+package com.reward.api.core.usecase.score.create;
 
 import com.reward.api.core.usecase.UseCase;
 

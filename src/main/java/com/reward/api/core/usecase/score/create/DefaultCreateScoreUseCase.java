@@ -1,9 +1,8 @@
-package com.reward.api.core.usecase.score;
+package com.reward.api.core.usecase.score.create;
 
 import com.reward.api.core.domain.level.LevelScoreCalculate;
 import com.reward.api.core.domain.score.ScoreBanking;
 import com.reward.api.core.domain.score.TypeOperation;
-import com.reward.api.core.domain.transaction.TypeTransaction;
 import com.reward.api.core.exception.DomainException;
 import com.reward.api.core.gateway.ScoreBankingGateway;
 import com.reward.api.core.usecase.customer.common.CustomerOutputData;

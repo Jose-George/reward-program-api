@@ -11,9 +11,9 @@ public final class LevelScore {
     private final String description;
     private final OffsetDateTime createdAt;
 
-    private LevelScore(UUID id, UUID customerId, String description, OffsetDateTime createdAt) {
+    public LevelScore(UUID id, UUID customerId, String description, OffsetDateTime createdAt) {
         this.id = id;
-        this.customerId = id;
+        this.customerId = customerId;
         this.description = description;
         this.createdAt = createdAt;
     }

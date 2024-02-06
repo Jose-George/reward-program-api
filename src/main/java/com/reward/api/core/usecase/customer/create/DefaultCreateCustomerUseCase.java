@@ -22,4 +22,7 @@ public class DefaultCreateCustomerUseCase extends CreateCustomerUseCase {
                 createCustomerCommand.dateBirth(), createCustomerCommand.currentScore());
         return CustomerOutputData.from(customerGateway.create(customer));
     }
+
+
 }
+

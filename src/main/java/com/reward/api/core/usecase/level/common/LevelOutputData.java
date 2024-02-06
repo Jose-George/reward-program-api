@@ -20,6 +20,10 @@ public class LevelOutputData {
         return new LevelOutputData(level.getId(), level.getDescription());
     }
 
+    public static LevelOutputData from(String level) {
+        return new LevelOutputData(null, level);
+    }
+
     public UUID getId() {
         return id;
     }
